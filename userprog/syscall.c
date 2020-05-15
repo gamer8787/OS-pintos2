@@ -12,7 +12,7 @@
 #include "filesys/file.h"
 #include "filesys/filesys.h"
 #include <string.h>
-//for check
+//for check22
 void syscall_entry (void);
 void syscall_handler (struct intr_frame *);
 void check_address(void *addr);
