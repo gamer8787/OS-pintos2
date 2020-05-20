@@ -13,6 +13,7 @@ fork_and_wait (void){
   magic++;
 
   if (magic >= 10){
+    printf("up exit\n");
     exit(magic);
   }
 
@@ -23,6 +24,7 @@ fork_and_wait (void){
   } else {
     msg ("child run");
     fork_and_wait();
+    printf("up exit\n");
     exit(magic);
   }
 }

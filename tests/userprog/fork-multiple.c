@@ -16,6 +16,7 @@ fork_and_wait (void){
     msg ("Parent: child exit status is %d", status);
   } else {
     msg ("child run");
+    printf("up exit\n");
     exit(magic);
   }
 }

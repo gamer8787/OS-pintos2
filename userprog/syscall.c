@@ -59,6 +59,7 @@ syscall_handler (struct intr_frame *f UNUSED) {
 			halt();
 			break;
 		case SYS_EXIT:
+			printf("up exit\n");
 			exit(reg.rdi);
 			break;
 		case SYS_FORK:
@@ -105,6 +106,7 @@ syscall_handler (struct intr_frame *f UNUSED) {
 
 void check_address(void *addr){
 	if (is_kernel_vaddr(addr)) {
+		printf("up exit\n");
 		exit(-1);
 	}
 }
@@ -153,6 +155,7 @@ int exec(const char *cmd_line){
 	int success = process_exec(cmd_line);
 
 	if (success < 0) {
+		printf("up exit\n");
 		exit(-1);
 	}
 }
@@ -166,6 +169,7 @@ bool create(const char *file, unsigned initial_size){
 	bool result = false;
 	if (file == NULL)
 	{
+		printf("up exit\n");
 		exit(-1);
 	}
 	check_address(file);
@@ -179,6 +183,7 @@ bool remove(const char *file){
 	bool result = false;
 	if (file == NULL)
 	{
+		printf("up exit\n");
 		exit(-1);
 	}
 	check_address(file);
@@ -193,6 +198,7 @@ bool remove(const char *file){
 int open(const char *file){
 	if (file == NULL)
 	{
+		printf("up exit\n");
 		exit(-1);
 	}
 	check_address(file);

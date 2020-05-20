@@ -105,6 +105,7 @@ main (int argc UNUSED, char *argv[] UNUSED) {
     seek (fd4, 0);
 
 	  msg ("child end");
+    printf("up exit\n");
     exit (byte_cnt);
   } 
 

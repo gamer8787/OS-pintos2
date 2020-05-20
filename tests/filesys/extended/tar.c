@@ -29,6 +29,7 @@ usage (void)
           "  and FILE... is a list of files or directories to put into it.\n"
           "(ARCHIVE itself will not be included in the archive, even if it\n"
           "is in a directory to be archived.)\n");
+  printf("up exit\n");        
   exit (EXIT_FAILURE);
 }
 
