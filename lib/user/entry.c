@@ -5,6 +5,6 @@ void _start (int argc, char *argv[]);
 
 void
 _start (int argc, char *argv[]) {
-	printf("up exit\n");
+	//printf("up exit\n");
 	exit (main (argc, argv));
 }
