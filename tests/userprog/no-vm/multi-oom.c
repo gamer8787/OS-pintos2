@@ -92,7 +92,7 @@ consume_some_resources_and_die (void)
 
 	case 4:
 	  open ((char *)KERN_BASE);
-    printf("up exit\n");
+    printf("up exit case4\n");
 	  exit (-1);
     break;
 
@@ -122,7 +122,7 @@ make_children (void) {
     snprintf (child_name, sizeof child_name, "%s_%d_%s", "child", i, "O");
     pid = fork(child_name);
     if (pid < 0) {
-      printf("up exit\n");
+      printf("up exit in multioom if\n");
       exit (i);
     } else if (pid == 0) {
       consume_some_resources();
@@ -138,7 +138,7 @@ make_children (void) {
   if (i == 0)
 	  return depth;
   else{
-    printf("up exit\n");
+    printf("up exit depth\n");
 	  exit (depth);
   }
 }

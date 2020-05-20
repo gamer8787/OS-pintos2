@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "__mutex_base": "c",
-        "*.inc": "c"
+        "*.inc": "c",
+        "inttypes.h": "c"
     }
 }
