@@ -140,6 +140,7 @@ pid_t fork(const char *thread_name) {
 	
 	if (child_thread->copied)
 	{
+		
 		return child_pid;
 	}
 	else {
@@ -161,6 +162,7 @@ int exec(const char *cmd_line){
 }
 
 int wait(pid_t pid){
+	//printf("in wait\n");
 	int result = process_wait(pid);
 	return result;
 }
@@ -201,9 +203,9 @@ int open(const char *file){
 		printf("up exit\n");
 		exit(-1);
 	}
-	check_address(file);
+	//check_address(file);
 	int len = strlen(file);
-	check_address(file + len);
+	//check_address(file + len);
 	struct file *f = filesys_open(file);
 	if (f == NULL) {
 		return -1;

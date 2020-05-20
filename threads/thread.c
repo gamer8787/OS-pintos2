@@ -331,8 +331,9 @@ thread_exit(void) {
    ASSERT(!intr_context());
    list_remove(&thread_current()->all_elem);
 #ifdef USERPROG
-   thread_current()->terminate = true;
+   //thread_current()->terminate = true;
    process_exit();
+   thread_current()->terminate = true;
    sema_up(&thread_current()->exit);
 #endif
 

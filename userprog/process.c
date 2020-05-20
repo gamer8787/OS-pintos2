@@ -145,7 +145,7 @@ __do_fork (void *aux) {
 	/* TODO: somehow pass the parent_if. (i.e. process_fork()'s if_) */
 	struct intr_frame *parent_if = parent->fork_if;
 	bool succ = true;
-
+	
 	/* 1. Read the cpu context to local stack. */
 	memcpy (&if_, parent_if, sizeof (struct intr_frame));
 
@@ -261,11 +261,9 @@ process_wait (tid_t child_tid UNUSED) {
 	}
 	if (!user_thread->terminate)
 	{
-		sema_down(&user_thread->exit);
+	sema_down(&user_thread->exit);
 	}
-	
 	int result = user_thread->terminate_status;
-
 	remove_child_process(user_thread);
 
 	return result;
@@ -297,11 +295,9 @@ process_exit (void) {
 static void
 process_cleanup (void) {
 	struct thread *curr = thread_current ();
-
 #ifdef VM
 	supplemental_page_table_kill (&curr->spt);
 #endif
-
 	uint64_t *pml4;
 	/* Destroy the current process's page directory and switch back
 	 * to the kernel-only page directory. */
