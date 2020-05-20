@@ -59,7 +59,7 @@ syscall_handler (struct intr_frame *f UNUSED) {
 			halt();
 			break;
 		case SYS_EXIT:
-			printf("up exit\n");
+			printf("up exit\n"); 
 			exit(reg.rdi);
 			break;
 		case SYS_FORK:
