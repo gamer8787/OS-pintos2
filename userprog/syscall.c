@@ -107,7 +107,7 @@ syscall_handler (struct intr_frame *f UNUSED) {
 void check_address(void *addr){
 	if (is_kernel_vaddr(addr)) {
 		printf("up exit\n");
-		exit(-1);asdasdasd
+		exit(-1);
 	}
 }
 
