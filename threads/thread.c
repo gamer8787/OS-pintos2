@@ -220,6 +220,7 @@ thread_create(const char* name, int priority,
    t->parent_thread = thread_current();
    t->terminate = false;
    t->copied = false;
+   //t->terminate_status = -1;
    t->terminate_status = -1;
    sema_init(&t->exit,0);
    sema_init(&t->fork,0);
@@ -227,7 +228,7 @@ thread_create(const char* name, int priority,
    list_push_back(&thread_current()->child_list, &t->child_elem);
    t->next_fd = 3;
    //t->fdt = palloc_get_page(0);
-   t->fdt = malloc(sizeof(struct file *) * 2000);
+   t->fdt = malloc(sizeof(struct file *) * 20000);
    if (t->fdt == NULL)
    {
       return TID_ERROR;
@@ -254,7 +255,6 @@ thread_create(const char* name, int priority,
    list_push_back(&all_list, &t->all_elem);
    thread_unblock(t);
    test_max_priority();
-
 
    return tid;
 }

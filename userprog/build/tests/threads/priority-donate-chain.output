@@ -5,14 +5,13 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+0FF915A0+0FEF15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -threads-tests -f run priority-donate-chain
+Booting from Hard Disk..Kernel command line: -q -threads-tests -f run priority-donate-chain
 0 ~ 9fc00 1
 100000 ~ ffe0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0xffe0000 (Usable: 260,992 kB)
-Calibrating timer...  117,760,000 loops/s.
+Calibrating timer...  130,867,200 loops/s.
 hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 Formatting file system...done.
@@ -58,8 +57,8 @@ Executing 'priority-donate-chain':
 (priority-donate-chain) main finishing with priority 0.
 (priority-donate-chain) end
 Execution of 'priority-donate-chain' complete.
-Timer: 68 ticks
-Thread: 31 idle ticks, 38 kernel ticks, 0 user ticks
+Timer: 72 ticks
+Thread: 30 idle ticks, 42 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 Console: 2943 characters output

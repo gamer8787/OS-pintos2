@@ -44,6 +44,7 @@ int make_children (void);
 static void
 consume_some_resources (void)
 {
+  //printf("in consume some  resre\n");
   int fd, fdmax = 126;
 
   /* Open as many files as we can, up to fdmax.
@@ -53,6 +54,7 @@ consume_some_resources (void)
 	 termination of the process.  */
   for (fd = 0; fd < fdmax; fd++) {
 #ifdef EXTRA2
+    //printf("in ifdef\n");
 	  if (fd != 0 && (random_ulong () & 1)) {
 		if (dup2(random_ulong () % fd, fd+fdmax) == -1)
 			break;
@@ -61,8 +63,10 @@ consume_some_resources (void)
 			  break;
 	  }
 #else
-		if (open (test_name) == -1)
+		if (open (test_name) == -1){
+      //printf("in open\n");
 		  break;
+    }
 #endif
   }
 }
@@ -77,25 +81,28 @@ consume_some_resources_and_die (void)
 
   switch (random_ulong () % 5) {
 	case 0:
+    ////printf("unders consume\n");
 	  *(int *) NULL = 42;
     break;
 
 	case 1:
+    ////printf("unders consume\n");
 	  return *(int *) NULL;
-
 	case 2:
+   ////printf("unders consume\n");
 	  return *KERN_BASE;
 
 	case 3:
 	  *KERN_BASE = 42;
+    ////printf("unders consume\n");
     break;
 
 	case 4:
 	  open ((char *)KERN_BASE);
-    printf("up exit case4\n");
+    ////printf("up exit case4\n");
 	  exit (-1);
     break;
-
+  
 	default:
 	  NOT_REACHED ();
   }
@@ -108,9 +115,11 @@ make_children (void) {
   int pid;
   char child_name[128];
   for (; ; random_init (i), i++) {
+    //printf("i is %d\n",i);
     if (i > EXPECTED_DEPTH_TO_PASS/2) {
       snprintf (child_name, sizeof child_name, "%s_%d_%s", "child", i, "X");
       pid = fork(child_name);
+      //printf("pid is %d under fork\n", pid);
       if (pid > 0 && wait (pid) != -1) {
         fail ("crashed child should return -1.");
       } else if (pid == 0) {
@@ -122,7 +131,7 @@ make_children (void) {
     snprintf (child_name, sizeof child_name, "%s_%d_%s", "child", i, "O");
     pid = fork(child_name);
     if (pid < 0) {
-      printf("up exit in multioom if\n");
+      //printf("in pid<0\n");
       exit (i);
     } else if (pid == 0) {
       consume_some_resources();
@@ -130,15 +139,16 @@ make_children (void) {
       break;
     }
   }
-
+  //printf("pid is %d\n", pid);
   int depth = wait (pid);
+  //printf("under  depth\n");
   if (depth < 0)
 	  fail ("Should return > 0.");
 
   if (i == 0)
 	  return depth;
   else{
-    printf("up exit depth\n");
+    //printf("up exit depth\n");
 	  exit (depth);
   }
 }

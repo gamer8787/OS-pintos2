@@ -59,7 +59,7 @@ syscall_handler (struct intr_frame *f UNUSED) {
 			halt();
 			break;
 		case SYS_EXIT:
-			printf("up exit in sys handle\n"); 
+			//printf("up exit in sys handle\n"); 
 			exit(reg.rdi);
 			break;
 		case SYS_FORK:
@@ -106,7 +106,7 @@ syscall_handler (struct intr_frame *f UNUSED) {
 
 void check_address(void *addr){
 	if (is_kernel_vaddr(addr)) {
-		printf("up exit check  address\n");
+		//printf("up exit check  address\n");
 		exit(-1);
 	}
 }
@@ -140,7 +140,7 @@ pid_t fork(const char *thread_name) {
 	
 	if (child_thread->copied)
 	{
-		
+		//printf("child_pid is %d\n",child_pid);
 		return child_pid;
 	}
 	else {
@@ -156,13 +156,12 @@ int exec(const char *cmd_line){
 	int success = process_exec(cmd_line);
 
 	if (success < 0) {
-		printf("up exit exec\n");
+		//printf("up exit exec\n");
 		exit(-1);
 	}
 }
 
 int wait(pid_t pid){
-	//printf("in wait\n");
 	int result = process_wait(pid);
 	return result;
 }
@@ -171,7 +170,7 @@ bool create(const char *file, unsigned initial_size){
 	bool result = false;
 	if (file == NULL)
 	{
-		printf("up exit create\n");
+		//printf("up exit create\n");
 		exit(-1);
 	}
 	check_address(file);
@@ -185,7 +184,7 @@ bool remove(const char *file){
 	bool result = false;
 	if (file == NULL)
 	{
-		printf("up exit remove\n");
+		//printf("up exit remove\n");
 		exit(-1);
 	}
 	check_address(file);
@@ -200,7 +199,7 @@ bool remove(const char *file){
 int open(const char *file){
 	if (file == NULL)
 	{
-		printf("up exit open\n");
+		//printf("up exit open\n");
 		exit(-1);
 	}
 	//check_address(file);

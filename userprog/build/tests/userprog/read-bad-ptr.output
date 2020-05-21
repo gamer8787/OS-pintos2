@@ -11,7 +11,7 @@ Booting from Hard Disk..Kernel command line: -q -f put read-bad-ptr put sample.t
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0xffe0000 (Usable: 260,992 kB)
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  130,867,200 loops/s.
 hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 102 sector (51 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -24,8 +24,8 @@ Executing 'read-bad-ptr':
 (read-bad-ptr) open "sample.txt"
 read-bad-ptr: exit(-1)
 Execution of 'read-bad-ptr' complete.
-Timer: 72 ticks
-Thread: 40 idle ticks, 30 kernel ticks, 3 user ticks
+Timer: 66 ticks
+Thread: 35 idle ticks, 31 kernel ticks, 1 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 111 reads, 242 writes
 hd1:0: 102 reads, 0 writes

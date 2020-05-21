@@ -79,10 +79,10 @@ initd (void *f_name) {
 		PANIC("Fail to launch initd\n");
 	NOT_REACHED ();
 }
-
+  
 /* Clones the current process as `name`. Returns the new process's thread id, or
  * TID_ERROR if the thread cannot be created. */
-tid_t
+tid_t  
 process_fork (const char *name, struct intr_frame *if_ UNUSED) {
 	/* Clone current thread to new thread.*/
 	return thread_create (name,
@@ -113,6 +113,7 @@ duplicate_pte (uint64_t *pte, void *va, void *aux) {
 	 *    TODO: NEWPAGE. */
 	newpage = palloc_get_page(PAL_USER);
 	if (newpage == NULL) {
+		//printf("null!\n");
 		return false;
 	}
 
@@ -196,6 +197,7 @@ __do_fork (void *aux) {
 		do_iret (&if_);
 	}
 error:
+	//printf("in error!\n");
 	sema_up(&current->fork);
 	thread_exit ();
 }
@@ -259,13 +261,11 @@ process_wait (tid_t child_tid UNUSED) {
 	{
 		return -1;
 	}
-	if (!user_thread->terminate)
-	{
+	//if (!user_thread->terminate)
 	sema_down(&user_thread->exit);
-	}
 	int result = user_thread->terminate_status;
 	remove_child_process(user_thread);
-
+	//printf("in wait end\n");
 	return result;
 }
 
