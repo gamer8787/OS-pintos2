@@ -197,7 +197,6 @@ __do_fork (void *aux) {
 		do_iret (&if_);
 	}
 error:
-	//printf("in error!\n");
 	sema_up(&current->fork);
 	thread_exit ();
 }
@@ -261,12 +260,10 @@ process_wait (tid_t child_tid UNUSED) {
 	{
 		return -1;
 	}
-	//if (!user_thread->terminate)
 	sema_down(&user_thread->exit);
 	int result = user_thread->terminate_status;
 	remove_child_process(user_thread);
-	//printf("in wait end\n");
-	return result;
+	return result; 
 }
 
 /* Exit the process. This function is called by thread_exit (). */

@@ -220,7 +220,6 @@ thread_create(const char* name, int priority,
    t->parent_thread = thread_current();
    t->terminate = false;
    t->copied = false;
-   //t->terminate_status = -1;
    t->terminate_status = -1;
    sema_init(&t->exit,0);
    sema_init(&t->fork,0);
@@ -254,7 +253,12 @@ thread_create(const char* name, int priority,
    /* Add to run queue. */
    list_push_back(&all_list, &t->all_elem);
    thread_unblock(t);
+   /*
+   if(thread_current()->priority < priority){
+      thread_yield();
+   } */
    test_max_priority();
+
 
    return tid;
 }
@@ -331,9 +335,8 @@ thread_exit(void) {
    ASSERT(!intr_context());
    list_remove(&thread_current()->all_elem);
 #ifdef USERPROG
-   //thread_current()->terminate = true;
-   process_exit();
    thread_current()->terminate = true;
+   process_exit();
    sema_up(&thread_current()->exit);
 #endif
 

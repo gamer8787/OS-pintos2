@@ -130,7 +130,7 @@ pid_t fork(const char *thread_name) {
 	int child_pid = process_fork(thread_name, &thread_current()->tf);
 	if (child_pid == TID_ERROR) {
 		return TID_ERROR;
-	}
+	} 
 
 	struct thread *child_thread = get_child_process(child_pid);
 	if (!child_thread->copied)
@@ -139,10 +139,10 @@ pid_t fork(const char *thread_name) {
 	}
 	
 	if (child_thread->copied)
-	{
+	{ 
 		//printf("child_pid is %d\n",child_pid);
 		return child_pid;
-	}
+	} 
 	else {
 		return TID_ERROR;
 	}
@@ -202,9 +202,9 @@ int open(const char *file){
 		//printf("up exit open\n");
 		exit(-1);
 	}
-	//check_address(file);
+	check_address(file);
 	int len = strlen(file);
-	//check_address(file + len);
+	check_address(file + len);
 	struct file *f = filesys_open(file);
 	if (f == NULL) {
 		return -1;
