@@ -5,7 +5,8 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+0FF915A0+0FEF15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..Kernel command line: -q -f put rox-child put child-rox run rox-child
+Booting from Hard Disk...
+Kernel command line: -q -f put rox-child put child-rox run rox-child
 0 ~ 9fc00 1
 100000 ~ ffe0000 1
 Pintos booting with: 
@@ -34,12 +35,12 @@ child-rox: exit(12)
 (rox-child) end
 rox-child: exit(0)
 Execution of 'rox-child' complete.
-Timer: 85 ticks
-Thread: 32 idle ticks, 44 kernel ticks, 10 user ticks
+Timer: 86 ticks
+Thread: 37 idle ticks, 44 kernel ticks, 5 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 173 reads, 468 writes
 hd1:0: 214 reads, 0 writes
-Console: 1179 characters output
+Console: 1178 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

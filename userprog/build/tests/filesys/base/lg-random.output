@@ -11,7 +11,7 @@ Booting from Hard Disk..Kernel command line: -q -f put lg-random run lg-random
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0xffe0000 (Usable: 260,992 kB)
-Calibrating timer...  52,377,600 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 108 sector (54 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -28,8 +28,8 @@ Executing 'lg-random':
 (lg-random) end
 lg-random: exit(0)
 Execution of 'lg-random' complete.
-Timer: 65 ticks
-Thread: 30 idle ticks, 26 kernel ticks, 10 user ticks
+Timer: 84 ticks
+Thread: 41 idle ticks, 34 kernel ticks, 9 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 258 reads, 556 writes
 hd1:0: 108 reads, 0 writes
