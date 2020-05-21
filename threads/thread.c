@@ -210,9 +210,10 @@ thread_create(const char* name, int priority,
 
    /* Allocate thread. */
    t = palloc_get_page(PAL_ZERO);
-   if (t == NULL)
+   if (t == NULL){
+      printf("in error\n");
       return TID_ERROR;
-
+   }
    /* Initialize thread. */
    init_thread(t, name, priority);
    //t->recent_cpu = thread_current()->recent_cpu;
@@ -230,6 +231,7 @@ thread_create(const char* name, int priority,
    t->fdt = malloc(sizeof(struct file *) * 2000);
    if (t->fdt == NULL)
    {
+      printf("in error\n");
       return TID_ERROR;
    }
    t->fdt[0] = NULL;
@@ -238,7 +240,6 @@ thread_create(const char* name, int priority,
    t->run_file = NULL;
 
    tid = t->tid = allocate_tid();
-
    /* Call the kernel_thread if it scheduled.
     * Note) rdi is 1st argument, and rsi is 2nd argument. */
    t->tf.rip = (uintptr_t)kernel_thread;
@@ -255,7 +256,7 @@ thread_create(const char* name, int priority,
    thread_unblock(t);
    test_max_priority();
 
-
+   //printf("tid2 is %d\n",tid);
    return tid;
 }
 

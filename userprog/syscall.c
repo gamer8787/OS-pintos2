@@ -128,6 +128,7 @@ pid_t fork(const char *thread_name) {
 	check_address(thread_name + len);
 
 	int child_pid = process_fork(thread_name, &thread_current()->tf);
+	//printf("child_pid is %d\n",child_pid);
 	if (child_pid == TID_ERROR) {
 		return TID_ERROR;
 	}
@@ -203,7 +204,7 @@ int open(const char *file){
 		printf("up exit open\n");
 		exit(-1);
 	}
-	//check_address(file);
+	check_address(file);
 	int len = strlen(file);
 	//check_address(file + len);
 	struct file *f = filesys_open(file);

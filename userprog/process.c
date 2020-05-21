@@ -197,6 +197,7 @@ __do_fork (void *aux) {
 	}
 error:
 	sema_up(&current->fork);
+	printf("in error\n");
 	thread_exit ();
 }
 

@@ -61,8 +61,10 @@ consume_some_resources (void)
 			  break;
 	  }
 #else
-		if (open (test_name) == -1)
+		if (open (test_name) == -1){
+      //printf("in open\n");
 		  break;
+  }
 #endif
   }
 }
@@ -92,7 +94,6 @@ consume_some_resources_and_die (void)
 
 	case 4:
 	  open ((char *)KERN_BASE);
-    printf("up exit case4\n");
 	  exit (-1);
     break;
 
@@ -111,18 +112,21 @@ make_children (void) {
     if (i > EXPECTED_DEPTH_TO_PASS/2) {
       snprintf (child_name, sizeof child_name, "%s_%d_%s", "child", i, "X");
       pid = fork(child_name);
+      //printf("pid is  %d and child_name is %s \n",pid,child_name);
       if (pid > 0 && wait (pid) != -1) {
         fail ("crashed child should return -1.");
       } else if (pid == 0) {
-        consume_some_resources_and_die();
+        printf("in consume\n");
+        //consume_some_resources_and_die();
         fail ("Unreachable");
       }
     }
 
     snprintf (child_name, sizeof child_name, "%s_%d_%s", "child", i, "O");
     pid = fork(child_name);
+    //printf("pid is %d\n", pid);
     if (pid < 0) {
-      printf("up exit in multioom if\n");
+      //printf("up exit in multioom if\n");
       exit (i);
     } else if (pid == 0) {
       consume_some_resources();
@@ -138,7 +142,6 @@ make_children (void) {
   if (i == 0)
 	  return depth;
   else{
-    printf("up exit depth\n");
 	  exit (depth);
   }
 }
